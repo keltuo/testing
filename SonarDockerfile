@@ -1,0 +1,8 @@
+FROM sonar-scanner-image:latest AS sonarqube_scan
+WORKDIR /app
+COPY . .
+RUN ls -list
+RUN sonar-scanner \
+    -Dsonar.host.url="http://localhost:9000" \
+    -Dsonar.projectKey="test_localhost_analyze" \
+    -Dsonar.sources="."

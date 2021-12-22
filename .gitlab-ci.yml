@@ -1,0 +1,50 @@
+stages:
+  - test
+
+unit-tests:
+  tags:
+    - build-kube
+  extends:
+    - .php-tests
+  script:
+    - php -dxdebug.mode=coverage -dshort_open_tag=0 vendor/bin/phpunit --configuration phpunit.xml.dist --coverage-text --verbose --log-junit report.xml
+  artifacts:
+    when: always
+    reports:
+      junit: report.xml
+
+code-sniffer:
+  tags:
+    - build-kube
+  extends:
+    - .php-tests
+  script:
+    - php vendor/bin/phpcs --standard=./phpcs.xml --report=full --report-\\Micheh\\PhpCodeSniffer\\Report\\Gitlab=phpcs-quality-report.json
+  artifacts:
+    when: always
+    reports:
+      codequality: phpcs-quality-report.json
+
+php-stan:
+  tags:
+    - build-kube
+  extends:
+    - .php-tests
+  script:
+    - php vendor/bin/phpstan analyse ./src -c ./phpstan.neon --error-format gitlab > phpstan.json
+  artifacts:
+    when: always
+    reports:
+      codequality: phpstan.json
+
+#Template
+.php-tests:
+  stage: pre-build-images
+  image: keltuo/php:8-cli-composer
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}
+    paths:
+      - vendor
+  before_script:
+    - pecl install xdebug && docker-php-ext-enable xdebug
+    - composer install --optimize-autoloader --prefer-dist --no-progress --no-scripts
