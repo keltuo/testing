@@ -34,13 +34,13 @@ Configuration files
 ```
 
 2. step - create docker interpreter in PHP Storm configuration
-   1. Add Configuration - Command line box click at "..." after "Choose interpreter dropdown"
+   1. Add Configuration - Command line box click "..." after "Choose interpreter dropdown"
       ![Add Configuration](img/phpstorm/step%201.png)
    2. Click '+' (new cli interpreter) - choose from docker
       ![Add cli interpreter](img/phpstorm/step%202.png)
    3. Configure remote interpreter - Choose "Docker compose"
       ![Configure cli interpreter](img/phpstorm/step%203.png)
-   4. Configure remote interpreter - Choose from dropdown "Configuration files" and new Click at '+' and choose your "docker-compose-unit.yml"
+   4. Configure remote interpreter - Choose from dropdown "Configuration files" and new Click '+' and choose your "docker-compose-unit.yml"
       ![Configure cli interpreter](img/phpstorm/step%204.png)
    5. Choose service "php" (service in docker-compose file)
       ![Configure cli interpreter](img/phpstorm/step%205.png)
