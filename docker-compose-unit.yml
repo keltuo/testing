@@ -1,0 +1,15 @@
+version: "3.0"
+services:
+    php:
+        image: keltuo/php:8-cli
+        depends_on:
+            - composer
+        volumes:
+            - ./:/var/www/
+        command: bash -c "php /var/www/vendor/phpunit/phpunit/phpunit --configuration /var/www/phpunit.xml.dist"
+
+    composer:
+        image: library/composer:latest
+        volumes:
+            - ./:/app
+        command: bash -c "composer install --optimize-autoloader --no-progress"

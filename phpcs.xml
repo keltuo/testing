@@ -15,6 +15,8 @@
     <arg name="tab-width" value="0"/>
 
     <exclude-pattern  type="relative-root">src/Kernel.php</exclude-pattern>
+    <exclude-pattern>src/Migrations/*</exclude-pattern>
+
     <rule ref="PSR2"/>
     <rule ref="./vendor/slevomat/coding-standard/SlevomatCodingStandard/ruleset.xml">
         <exclude name="SlevomatCodingStandard.Arrays.DisallowImplicitArrayCreation"/>
