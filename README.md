@@ -51,3 +51,5 @@ Configuration files
    8. Run script list in PHP storm -> choose one and run on green arrow ">" :)
       ![Configure cli interpreter](img/phpstorm/step%208.png)
 
+thx
+
